@@ -12,7 +12,6 @@ import subprocess
 import threading
 import time
 import random
-import exceptions
 from pull import Pully
 from screen import Display
 from signal import signal, SIGINT, getsignal
@@ -491,33 +490,33 @@ def _silfer(iface, options):
 
 	return sniffer
 
-def _crack_filer(options):
-	if options.read == None:
-		pull.special("Please Specify your capture path. See manual!"); sys.exit(-1)
-	else:
-		_file = options.read
-		if os.path.isfile(_file):
-			return _file
-		else:
-			pull.special("No Such File: %s[%s]%s" % (pull.RED, _file, pull.END)); sys.exit(-1)
+# def _crack_filer(options):
+# 	if options.read == None:
+# 		pull.special("Please Specify your capture path. See manual!"); sys.exit(-1)
+# 	else:
+# 		_file = options.read
+# 		if os.path.isfile(_file):
+# 			return _file
+# 		else:
+# 			pull.special("No Such File: %s[%s]%s" % (pull.RED, _file, pull.END)); sys.exit(-1)
 
-def _detargeter(options):
-	_ap, _cl = '', ''
-	if options.ap:
-		if re.match("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})", options.ap, re.I):
-			_ap = options.ap
-		else:
-			pull.error("Not a Valid MAC address for Access Point!"); sys.exit(-1)
-	if options.client:
-		if re.match("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})", options.client, re.I):
-			_cl = options.client
-		else:
-			pull.error("Not a Valid MAC address for STA!"); sys.exit(-1)
-	return _ap.lower(), _cl.lower()
+# def _detargeter(options):
+# 	_ap, _cl = '', ''
+# 	if options.ap:
+# 		if re.match("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})", options.ap, re.I):
+# 			_ap = options.ap
+# 		else:
+# 			pull.error("Not a Valid MAC address for Access Point!"); sys.exit(-1)
+# 	if options.client:
+# 		if re.match("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})", options.client, re.I):
+# 			_cl = options.client
+# 		else:
+# 			pull.error("Not a Valid MAC address for STA!"); sys.exit(-1)
+# 	return _ap.lower(), _cl.lower()
 
-def _deauth_counter(options):
-	if options.deauthcount is None:
-		pull.error("How much frames you want to send? Specify -0/--count option."); sys.exit(-1)
+# def _deauth_counter(options):
+# 	if options.deauthcount is None:
+# 		pull.error("How much frames you want to send? Specify -0/--count option."); sys.exit(-1)
 
 def main():
 	global WRITE__, DICTIONARY, NEW_HAND, V__, _KEY_, _HANDSHAKE

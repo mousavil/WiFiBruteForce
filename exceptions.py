@@ -1,3 +1,0 @@
-
-class SniffBreak(ValueError):
-	pass
