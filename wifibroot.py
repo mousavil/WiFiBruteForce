@@ -23,7 +23,6 @@ from wireless import eAPoL
 from wireless import PMKID
 from wireless import CAPTURE_PMKID
 from wireless import CAPTURE_HAND
-from wireless import DEAUTH
 from scapy.utils import rdpcap
 from scapy.utils import PcapWriter
 from utils import tabulate
@@ -389,13 +388,13 @@ class Moder:
 				pull.error("Invalid Capture! Are you sure this is the valid capture?")
 				sys.exit(-1)
 
-	def silent_deauth_mode(self, iface, _deauth, _ap, _cl, _count):
-		_silent = DEAUTH(iface.iface, _deauth, _ap, _cl, _count, pull, V__)
-		_silent.locate()
-		if _silent.verify():
-			_silent.jam()
-		else:
-			pull.error("Not able to Find such network %s[%s]%s" % (pull.RED, _ap.replace(':', '').upper(), pull.END )); sys.exit(-1)
+	# def silent_deauth_mode(self, iface, _deauth, _ap, _cl, _count):
+	# 	_silent = DEAUTH(iface.iface, _deauth, _ap, _cl, _count, pull, V__)
+	# 	_silent.locate()
+	# 	if _silent.verify():
+	# 		_silent.jam()
+	# 	else:
+	# 		pull.error("Not able to Find such network %s[%s]%s" % (pull.RED, _ap.replace(':', '').upper(), pull.END )); sys.exit(-1)
 			
 
 ##########################
@@ -440,16 +439,16 @@ def _wordlister(options):
 			pull.error('No such File: %s' % (options.dictionary))
 			sys.exit(-1)
 
-def _typer(options):
-	if not options.type == None:
-		if options.type == 'handshake':
-			return 1
-		elif options.type == 'pmkid':
-			return 2
-		else:
-			pull.error('Unknown Captured type specifed. Use --list-types option to see the list.'); sys.exit(-1)
-	else:
-		pull.special("No Capture Type Specified. See the manual (-h, --help)"); sys.exit(-1)
+# def _typer(options):
+# 	if not options.type == None:
+# 		if options.type == 'handshake':
+# 			return 1
+# 		elif options.type == 'pmkid':
+# 			return 2
+# 		else:
+# 			pull.error('Unknown Captured type specifed. Use --list-types option to see the list.'); sys.exit(-1)
+# 	else:
+# 		pull.special("No Capture Type Specified. See the manual (-h, --help)"); sys.exit(-1)
 
 def _channel_verifier(ch):
 	__channels = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
@@ -583,21 +582,21 @@ def main():
 			pull.special("This attack only works for WPA2 networks")
 			sys.exit(0)
 
-	elif options.mode == 3:
-		if options.help:
-			pull.help(3); sys.exit(0)
-		if options.listTypes:
-			pull.listTypes(); sys.exit(0)
-		_type = _typer(options); DICTIONARY = _wordlister(options); _file = _crack_filer(options)
-		_modler = Moder(options.mode)
-		_modler.crack_mode(_type, _file, options.essid)
+	# elif options.mode == 3:
+	# 	if options.help:
+	# 		pull.help(3); sys.exit(0)
+	# 	if options.listTypes:
+	# 		pull.listTypes(); sys.exit(0)
+	# 	_type = _typer(options); DICTIONARY = _wordlister(options); _file = _crack_filer(options)
+	# 	_modler = Moder(options.mode)
+	# 	_modler.crack_mode(_type, _file, options.essid)
 
-	elif options.mode == 4:
-		if options.help:
-			pull.help(4); sys.exit(0)
-		iface = _channeler(options); _modler = Moder(options.mode); _deauth_counter(options)
-		signal(SIGINT, grace_exit)
-		_tgt = _detargeter(options); _modler.silent_deauth_mode(iface, options.deauth, _tgt[0], _tgt[1], options.deauthcount)
+	# elif options.mode == 4:
+	# 	if options.help:
+	# 		pull.help(4); sys.exit(0)
+	# 	iface = _channeler(options); _modler = Moder(options.mode); _deauth_counter(options)
+	# 	signal(SIGINT, grace_exit)
+	# 	_tgt = _detargeter(options); _modler.silent_deauth_mode(iface, options.deauth, _tgt[0], _tgt[1], options.deauthcount)
 
 
 if __name__ == "__main__":

@@ -73,45 +73,13 @@ Filters:
                        on. Default: ALL
 '''
 
-__3help__='''
-Mode: 
-   03    Perform Manaul cracking on available capture
-         types. See --list-types                         3
 
-Options:
-   Args               Description                      Required 
-   -h, --help         Show this help manual              NO
-       --list-types   List available cracking types      NO
-       --type         Type of capture to crack           YES
-   -v, --verbose      Turn off Verbose mode.             NO
-   -d, --dictionary   Dictionary for Cracking            YES
-   -e, --essid        ESSID of target network. 
-                      Only for HANDSHAKE Type            YES
-   -r, --read         Captured file to crack             YES
-'''
-
-__4help__='''
-Mode:
-    04   Deauthentication. Disconnect two stations
-         and jam the traffic.                            4
-
-Options:
-    Args              Description                      Required
-    -h, --help        Show this help manual              NO
-    -i, --interface   Monitor Mode Interface to use      YES
-    -0, --count       Number of Deauthentication
-                      frames to send. '0' specifies
-                      unlimited frames                   YES
-        --ap          Access Point MAC Address           NO
-        --client      STA (Station) MAC Address          NO
-'''
-
-__list__='''
-Types: 
-    #         Type            Value
-    1         HANDSHAKE       handshake
-    2         PMKID           pmkid
-'''
+# __list__='''
+# Types: 
+#     #         Type            Value
+#     1         HANDSHAKE       handshake
+#     2         PMKID           pmkid
+# '''
 
 
 class Pully:
@@ -209,13 +177,9 @@ class Pully:
 			print __1help__
 		elif _m == 2:
 			print __2help__
-		elif _m == 3:
-			print __3help__
-		elif _m == 4:
-			print __4help__
 
 	def modes(self):
 		print __mode__
 
-	def listTypes(self):
-		print __list__
+	# def listTypes(self):
+	# 	print __list__
